@@ -2,6 +2,7 @@
 
 require "test_helper"
 require "time"
+require "trilogy"
 require "lib/trilogy/cs/bind"
 
 class Trilogy
@@ -97,7 +98,7 @@ class Trilogy
 
       describe "the number of values for binding is less than the number of placeholders" do
         it "should execute query successfully" do
-          e = assert_raises Trilogy::CS::Bind::Error do
+          e = assert_raises Trilogy::Cs::Bind::Error do
             @client.xquery("select ? AS ret1, ? AS ret2", 1)
           end
 
@@ -107,7 +108,7 @@ class Trilogy
 
       describe "the number of placeholders is less than the number of values for binding" do
         it "should execute query successfully" do
-          e = assert_raises Trilogy::CS::Bind::Error do
+          e = assert_raises Trilogy::Cs::Bind::Error do
             @client.xquery("select ? AS ret", 1, 2)
           end
 

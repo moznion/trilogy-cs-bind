@@ -4,13 +4,15 @@ require "trilogy"
 require "stringio"
 
 class Trilogy
-  module CS
+  module Cs
     module Bind
       class Error < StandardError; end
     end
   end
 
   # xquery executes the query with client-side placeholder binding.
+  #
+  # The placeholder character for binding in the query is `?`, and this library binds each value (provided through the `values` parameter) into its corresponding placeholder with MySQL escaping.
   # This method raises an error if the number of placeholders in the query does not match the number of values provided for binding.
   #
   # @rbs sql: String -- SQL query to execute might have placeholders (i.e. 0 or more '?' terms)
@@ -25,6 +27,8 @@ class Trilogy
   end
 
   # pseudo_bind binds the values with escaping into the given SQL query.
+  #
+  # See also: xquery
   #
   # @rbs sql: String -- An SQL query to execute might have placeholders (i.e. 0 or more '?' terms)
   # @rbs values: Array[untyped] -- Values to bind into the SQL query.
@@ -47,7 +51,7 @@ class Trilogy
     end
 
     if values_num != placeholder_count
-      raise CS::Bind::Error, "the number of placeholders in the query does not match the number of values provided for binding"
+      raise Cs::Bind::Error, "the number of placeholders in the query does not match the number of values provided for binding"
     end
 
     escaped.string

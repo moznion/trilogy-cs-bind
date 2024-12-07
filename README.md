@@ -1,28 +1,44 @@
 # Trilogy::Cs::Bind
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/trilogy/cs/bind`. To experiment with that code, run `bin/console` for an interactive prompt.
+An expansion library for [Trilogy](https://github.com/trilogy-libraries/trilogy) to support client-side binding.
 
 ## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
 
 Install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle add trilogy-cs-bind
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install trilogy-cs-bind
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+This library extends two instance methods `#xquery` and `#pseudo_bineudo_bind` to the Trilogy class on library loaded.
+
+### Synopsis
+
+```ruby
+require "trilogy"
+require "trilogy-cs-bind"
+
+client = Trilogy.new(host: "127.0.0.1", port: 3306, username: "root", read_timeout: 2)
+client.xquery("select ? AS ret", "abc'def\"ghi\0jkl%mno").each_hash.to_a # => [{"ret" => "abc'def\"ghi\0jkl%mno"}]
+```
+
+### `xquery: (String sql, *untyped values, ?flags: Integer | nil) -> Trilogy::Result`
+
+This method executes the query with client-side binding.
+
+The placeholder character for binding in the query is `?`, and this library binds each value (provided through the `values` parameter) into its corresponding placeholder with MySQL escaping.
+
+### `pseudo_bind: (String sql, Array[untyped] values) -> String`
+
+This method binds the values into the given SQL query with MySQL escaping by replacing the placeholders.
 
 ## Development
 
@@ -32,12 +48,15 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/trilogy-cs-bind. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/trilogy-cs-bind/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/moznion/trilogy-cs-bind. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/moznion/trilogy-cs-bind/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+The reference implementation of this library is [mysql2-cs-bind](https://rubygems.org/gems/mysql2-cs-bind).
+
 ## Code of Conduct
 
-Everyone interacting in the Trilogy::Cs::Bind project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/trilogy-cs-bind/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Trilogy::Cs::Bind project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/moznion/trilogy-cs-bind/blob/main/CODE_OF_CONDUCT.md).
+
