@@ -1,11 +1,8 @@
-name: Ruby
+name: Test
 
 on:
-  push:
-    branches:
-      - main
-
-  pull_request:
+  - push
+  - pull_request
 
 jobs:
   build:
@@ -14,8 +11,14 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.3.5'
-
+          - '3.3.6'
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 33306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: password
     steps:
     - uses: actions/checkout@v4
     - name: Set up Ruby
