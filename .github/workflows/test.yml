@@ -27,4 +27,7 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
     - name: Run the default task
-      run: bundle exec rake
+      run: |
+        wget --tries 10 --waitretry 10 --retry-connrefused 127.0.0.1:33306
+        mysql -h 127.0.0.1 -P 33306 -uroot -p'password' -e "ALTER USER root@'%' IDENTIFIED WITH mysql_native_password BY 'password'"
+        bundle exec rake
