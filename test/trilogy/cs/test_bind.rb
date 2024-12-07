@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "time"
 require "lib/trilogy/cs/bind"
 
 class Trilogy
