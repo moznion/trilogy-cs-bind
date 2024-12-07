@@ -18,7 +18,7 @@ gem install trilogy-cs-bind
 
 ## Usage
 
-This library extends two instance methods `#xquery` and `#pseudo_bineudo_bind` to the Trilogy class on library loaded.
+This library extends two instance methods `#xquery` and `#pseudo_bind` to the Trilogy class on library loaded.
 
 ### Synopsis
 
