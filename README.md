@@ -1,4 +1,4 @@
-# Trilogy::Cs::Bind
+# Trilogy::Cs::Bind [![Test](https://github.com/moznion/trilogy-cs-bind/actions/workflows/test.yml/badge.svg)](https://github.com/moznion/trilogy-cs-bind/actions/workflows/test.yml) [![Gem Version](https://badge.fury.io/rb/trilogy-cs-bind.svg)](https://badge.fury.io/rb/trilogy-cs-bind)
 
 An expansion library for [Trilogy](https://github.com/trilogy-libraries/trilogy) to support client-side binding.
 
