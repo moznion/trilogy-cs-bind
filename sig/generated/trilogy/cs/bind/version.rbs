@@ -1,0 +1,9 @@
+# Generated from lib/trilogy/cs/bind/version.rb with RBS::Inline
+
+class Trilogy
+  module Cs
+    module Bind
+      VERSION: ::String
+    end
+  end
+end

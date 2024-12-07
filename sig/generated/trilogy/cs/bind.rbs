@@ -1,0 +1,32 @@
+# Generated from lib/trilogy/cs/bind.rb with RBS::Inline
+
+class Trilogy
+  module CS
+    module Bind
+      class Error < StandardError
+      end
+    end
+  end
+
+  # xquery executes the query with client-side placeholder binding.
+  # This method raises an error if the number of placeholders in the query does not match the number of values provided for binding.
+  #
+  # @rbs sql: String -- SQL query to execute might have placeholders (i.e. 0 or more '?' terms)
+  # @rbs *values: untyped -- Values to bind into the SQL query.
+  # @rbs flags: Integer | nil
+  # @rbs return: Trilogy::Result
+  def xquery: (String sql, *untyped values, ?flags: Integer | nil) -> Trilogy::Result
+
+  # pseudo_bind binds the values with escaping into the given SQL query.
+  #
+  # @rbs sql: String -- An SQL query to execute might have placeholders (i.e. 0 or more '?' terms)
+  # @rbs values: Array[untyped] -- Values to bind into the SQL query.
+  # @rbs return: String -- An SQL query that is bound to values with escaping.
+  def pseudo_bind: (String sql, Array[untyped] values) -> String
+
+  private
+
+  # @rbs raw: untyped
+  # @rbs return: String
+  def _escape: (untyped raw) -> String
+end

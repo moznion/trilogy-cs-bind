@@ -2,11 +2,10 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in trilogy-cs-bind.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
-
-gem "minitest", "~> 5.16"
-
-gem "standard", "~> 1.3"
+gem "minitest", "~> 5.16", require: false
+gem "rake", "~> 13.0", require: false
+gem "rbs-inline", "~> 0.10.0", require: false
+gem "standard", "~> 1.3", require: false
+gem "trilogy", require: false
